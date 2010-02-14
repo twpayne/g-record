@@ -1,4 +1,4 @@
-CFLAGS=--std=c99 -O3 -fomit-frame-pointer -D_GNU_SOURCE
+CFLAGS=--std=c99 -O3 -fomit-frame-pointer -D_GNU_SOURCE -Wall
 LIBS=/usr/lib/libcrypto.a
 
 .PHONY: all

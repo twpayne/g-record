@@ -88,7 +88,7 @@ int main(int argc, char *argv[])
 				goto error;
 			++g_records;
 		} else {
-			HMAC_Update(&ctx, line, strlen(line));
+			HMAC_Update(&ctx, (unsigned char *) line, strlen(line));
 		}
 	}
 	if (!feof(file))

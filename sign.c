@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 		} else if (line[0] == 'L' && strncmp(line, "LXTP", 4)) {
 			0;
 		} else {
-			HMAC_Update(&ctx, line, strlen(line));
+			HMAC_Update(&ctx, (unsigned char *) line, strlen(line));
 		}
 	}
 
