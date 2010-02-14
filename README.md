@@ -27,15 +27,21 @@ Usage
 
 ### `genkey`
 
-`genkey filename` generates a random signing key in `filename`.  It is automatically compiled and invoked during the build process.
+`genkey filename` generates a random signing key in `filename`.  It is
+automatically compiled and invoked during the build process.
 
 ### `sign`
 
-`sign` copies its standard input to its standard output and appends a one line G-record.  The G record is one line hexadecimal encoding of the SHA256 HMAC of the data read.
+`sign` copies its standard input to its standard output and appends a one line
+G-record.  The G record is one line hexadecimal encoding of the SHA256 HMAC of
+the data read.
 
 ### `vali`
 
-`vali` reads a single file, calculates its SHA256 HMAC and compares this to the G-record found at the end.  If the file validates successfully then it prints `Valid` and returns 0 (success), otherwise it prints `Invalid` and returns 1 (failure).
+`vali` reads a single file, calculates its SHA256 HMAC and compares this to
+the G-record found at the end.  If the file validates successfully then it
+prints `Valid` and returns 0 (success), otherwise it prints `Invalid` and
+returns 1 (failure).
 
 
 Example
@@ -45,7 +51,8 @@ Example
         $ make
  2. Create a file to sign:
         $ $EDITOR example.txt
-    Note that lines beginning with "G" will be interpreted as invalid G-records, causing validation to fail.
+    Note that lines beginning with "G" will be interpreted as invalid
+    G-records, causing validation to fail.
  3. Sign it with `sign`:
         $ ./sign < example.txt > example.txt.g
  4. Verify the signature with `vali`:
@@ -61,14 +68,20 @@ Example
 Known bugs
 ==========
 
-The G-record generation is inherently insecure because the signing key has to be distributed with the signing program.  Practically, the generated G-records can dissuade casual tampering but cannot prevent a technically competent attacker. The attack vectors are, in approximate order of effort:
+The G-record generation is inherently insecure because the signing key has to
+be distributed with the signing program.  Practically, the generated G-records
+can dissuade casual tampering but cannot prevent a technically competent
+attacker. The attack vectors are, in approximate order of effort:
 
- * Running the signing program in a controlled environment and connecting a fake GPS.
- * Reverse engineering the program binary or firmware to extract the signing algorithm and key.
+ * Running the signing program in a controlled environment and connecting a
+   fake GPS.
+ * Reverse engineering the program binary or firmware to extract the signing
+   algorithm and key.
  * Generating false GPS signals :-)
 
 
 References
 ==========
 
- * [Cryptographic Right Answers](http://www.daemonology.net/blog/2009-06-11-cryptographic-right-answers.html)
+ * [Cryptographic Right Answers]
+   (http://www.daemonology.net/blog/2009-06-11-cryptographic-right-answers.html)
