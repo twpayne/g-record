@@ -63,9 +63,12 @@ int main(int argc, char *argv[])
 	unsigned char g_record[G_RECORD_LEN];
 	char line[1024];
 	while (fgets(line, sizeof line, file)) {
+		if (g_records)
+			goto error;
 		if (line[0] == 'G') {
-			if (g_records++ || parse_g_record(line, g_record))
+			if (parse_g_record(line, g_record))
 				goto error;
+			++g_records;
 		} else {
 			HMAC_Update(&ctx, line, strlen(line));
 		}
