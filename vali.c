@@ -79,7 +79,12 @@ int main(int argc, char *argv[])
 	unsigned char md[EVP_MAX_MD_SIZE];
 	unsigned md_len;
 	HMAC_Final(&ctx, md, &md_len);
-	if (md_len != G_RECORD_LEN || memcmp(md, g_record, G_RECORD_LEN))
+	if (md_len != G_RECORD_LEN)
+		goto error;
+	int errors = 0;
+	for (int i = 0; i < G_RECORD_LEN; ++i)
+		errors |= md[i] ^ g_record[i];
+	if (errors)
 		goto error;
 
 	printf("Valid\n");
