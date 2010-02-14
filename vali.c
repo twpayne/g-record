@@ -8,6 +8,18 @@
 
 #define G_RECORD_LEN 32
 
+int parse_line(const char *s)
+{
+	while (*s && *s != '\n')
+		++s;
+	if (*s != '\n')
+		return -1;
+	++s;
+	if (*s)
+		return -1;
+	return 0;
+}
+
 int parse_g_record(const char *s, unsigned char *g_record)
 {
 	if (*s++ != 'G')
@@ -63,6 +75,8 @@ int main(int argc, char *argv[])
 	unsigned char g_record[G_RECORD_LEN];
 	char line[1024];
 	while (fgets(line, sizeof line, file)) {
+		if (parse_line(line))
+			goto error;
 		if (g_records)
 			goto error;
 		if (line[0] == 'G') {
