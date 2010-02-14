@@ -66,3 +66,9 @@ The G-record generation is inherently insecure because the signing key has to be
  * Running the signing program in a controlled environment and connecting a fake GPS.
  * Reverse engineering the program binary or firmware to extract the signing algorithm and key.
  * Generating false GPS signals :-)
+
+
+References
+==========
+
+ * [Cryptographic Right Answers](http://www.daemonology.net/blog/2009-06-11-cryptographic-right-answers.html)
