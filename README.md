@@ -49,10 +49,9 @@ Example
 
  1. Build the software:
         $ make
- 2. Create a file to sign:
+ 2. Create a file to sign.  Note that lines beginning with "G" will be
+    interpreted as invalid G-records, causing validation to fail.
         $ $EDITOR example.txt
-    Note that lines beginning with "G" will be interpreted as invalid
-    G-records, causing validation to fail.
  3. Sign it with `sign`:
         $ ./sign < example.txt > example.txt.g
  4. Verify the signature with `vali`:
