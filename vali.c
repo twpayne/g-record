@@ -6,7 +6,7 @@
 
 #include "key.c"
 
-#define G_RECORD_LEN 20
+#define G_RECORD_LEN 32
 
 int parse_g_record(const char *s, unsigned char *g_record)
 {
@@ -53,7 +53,7 @@ int main(int argc, char *argv[])
 
 	HMAC_CTX ctx;
 	HMAC_CTX_init(&ctx);
-	HMAC_Init_ex(&ctx, key, key_len, EVP_sha1(), 0);
+	HMAC_Init_ex(&ctx, key, key_len, EVP_sha256(), 0);
 	int g_records = 0;
 	unsigned char g_record[G_RECORD_LEN];
 	char line[1024];

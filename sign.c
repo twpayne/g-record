@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
 {
 	HMAC_CTX ctx;
 	HMAC_CTX_init(&ctx);
-	HMAC_Init_ex(&ctx, key, key_len, EVP_sha1(), 0);
+	HMAC_Init_ex(&ctx, key, key_len, EVP_sha256(), 0);
 
 	size_t n;
 	char buffer[1024];
