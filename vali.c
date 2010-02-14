@@ -79,7 +79,11 @@ int main(int argc, char *argv[])
 			goto error;
 		if (g_records)
 			goto error;
-		if (line[0] == 'G') {
+		if (line[0] == 'H' && (line[1] == 'O' || line[1] == 'P')) {
+			0;
+		} else if (line[0] == 'L' && strncmp(line, "LXTP", 4)) {
+			0;
+		} else if (line[0] == 'G') {
 			if (parse_g_record(line, g_record))
 				goto error;
 			++g_records;
