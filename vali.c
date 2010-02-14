@@ -74,9 +74,11 @@ int main(int argc, char *argv[])
 	if (md_len != G_RECORD_LEN || memcmp(md, g_record, G_RECORD_LEN))
 		goto error;
 
+	printf("Valid\n");
 	return EXIT_SUCCESS;
 
 error:
+	printf("Invalid\n");
 	return EXIT_FAILURE;
 
 }

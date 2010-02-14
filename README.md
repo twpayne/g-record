@@ -35,7 +35,7 @@ Usage
 
 ### `vali`
 
-`vali` reads a single file, calculates its SHA256 HMAC and compares this to the G-record found at the end.  If the file validates successfully then return code is 0 (success), otherwise it is 1 (failure).
+`vali` reads a single file, calculates its SHA256 HMAC and compares this to the G-record found at the end.  If the file validates successfully then it prints `Valid` and returns 0 (success), otherwise it prints `Invalid` and returns 1 (failure).
 
 
 Example
@@ -49,12 +49,12 @@ Example
  3. Sign it with `sign`:
         $ ./sign < example.txt > example.txt.g
  4. Verify the signature with `vali`:
-        $ ./vali example.txt.g && echo Valid || echo Invalid
+        $ ./vali example.txt.g
         Valid
  5. Modify the signed file:
         $ $EDITOR example.txt.g
  6. Check that the signature is no longer valid:
-        $ ./vali example.txt.g && echo Valid || echo Invalid
+        $ ./vali example.txt.g
         Invalid
 
 
