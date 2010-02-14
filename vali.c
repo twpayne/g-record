@@ -101,11 +101,11 @@ int main(int argc, char *argv[])
 	if (errors)
 		goto error;
 
-	printf("Valid\n");
+	printf("Validation check passed, data indicated as correct\n");
 	return EXIT_SUCCESS;
 
 error:
-	printf("Invalid\n");
+	printf("Validation check failed\n");
 	return EXIT_FAILURE;
 
 }

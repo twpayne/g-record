@@ -38,10 +38,10 @@ the data read.
 
 ### `vali`
 
-`vali` reads a single file, calculates its HMAC-SHA256 and compares this to
-the G-record found at the end.  If the file validates successfully then it
-prints `Valid` and returns 0 (success), otherwise it prints `Invalid` and
-returns 1 (failure).
+`vali` reads a single file, calculates its HMAC-SHA256 and compares this to the
+G-record found at the end.  If the file validates successfully then it prints
+`Validation check passed, data indicated as correct` and returns 0 (success),
+otherwise it prints `Validation check failed` and returns 1 (failure).
 
 
 Example
@@ -56,12 +56,12 @@ Example
         $ ./sign < example.txt > example.txt.g
  4. Verify the signature with `vali`:
         $ ./vali example.txt.g
-        Valid
+        Validation check passed, data indicated as correct
  5. Modify the signed file:
         $ $EDITOR example.txt.g
  6. Check that the signature is no longer valid:
         $ ./vali example.txt.g
-        Invalid
+        Validation check failed
 
 
 Known bugs
