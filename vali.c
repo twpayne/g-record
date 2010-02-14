@@ -42,14 +42,19 @@ int parse_g_record(const char *s, unsigned char *g_record)
 int main(int argc, char *argv[])
 {
 
-	FILE *file = 0;
 	if (argc != 2) {
 		fprintf(stderr, "Usage: %s filename\n", argv[0]);
 		return EXIT_FAILURE;
 	}
-	file = strcmp(argv[1], "-") ? fopen(argv[1], "rb") : stdin;
-	if (!file)
-		goto error;
+
+	FILE *file = 0;
+	if (strcmp(argv[1], "-")) {
+		file = fopen(argv[1], "r");
+		if (!file)
+			goto error;
+	} else {
+		file = stdin;
+	}
 
 	HMAC_CTX ctx;
 	HMAC_CTX_init(&ctx);
