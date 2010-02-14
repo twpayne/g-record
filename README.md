@@ -8,6 +8,7 @@ Copyright &copy; Tom Payne 2010
 Quick start
 ===========
 
+
 Dependencies
 ------------
 
@@ -53,3 +54,12 @@ Example
  6. Check that the signature is no longer valid:
         $ ./vali example.txt.g && echo Valid || echo Invalid
         Invalid
+
+
+Known bugs
+==========
+
+The G-record generation is inherently insecure because the signing key has to be distributed with the signing program.  Practically, the generated G-records can dissuade casual tampering but cannot prevent a technically competent attacker. The attack vectors are, in approximate order of effort:
+ * Running the signing program in a controlled environment and connecting a fake GPS.
+ * Reverse engineering the program binary or firmware to extract the signing algorithm and key.
+ * Generating false GPS signals :-)
