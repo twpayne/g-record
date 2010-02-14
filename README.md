@@ -33,12 +33,12 @@ automatically compiled and invoked during the build process.
 ### `sign`
 
 `sign` copies its standard input to its standard output and appends a one line
-G-record.  The G record is one line hexadecimal encoding of the SHA256 HMAC of
+G-record.  The G-record is one line hexadecimal encoding of the HMAC-SHA256 of
 the data read.
 
 ### `vali`
 
-`vali` reads a single file, calculates its SHA256 HMAC and compares this to
+`vali` reads a single file, calculates its HMAC-SHA256 and compares this to
 the G-record found at the end.  If the file validates successfully then it
 prints `Valid` and returns 0 (success), otherwise it prints `Invalid` and
 returns 1 (failure).
