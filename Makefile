@@ -2,16 +2,16 @@ CFLAGS=--std=c99 -O3 -fomit-frame-pointer -D_GNU_SOURCE -Wall
 LIBS=/usr/lib/libcrypto.a
 
 .PHONY: all
-all: sign vali
+all: sign-xtp vali-xtp
 
 .PHONY: clean
 clean:
-	rm -f genkey sign vali
+	rm -f genkey sign-xtp vali-xtp
 
-sign: sign.c key.c
+sign-xtp: sign-xtp.c key.c
 	gcc -o $@ $(CFLAGS) $< $(LIBS)
 
-vali: vali.c key.c
+vali-xtp: vali-xtp.c key.c
 	gcc -o $@ $(CFLAGS) $< $(LIBS)
 
 .PRECIOUS: key.c

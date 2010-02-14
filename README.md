@@ -30,18 +30,19 @@ Usage
 `genkey filename` generates a random signing key in `filename`.  It is
 automatically compiled and invoked during the build process.
 
-### `sign`
+### `sign-xtp`
 
-`sign` copies its standard input to its standard output and appends a one line
+`sign-xtp` copies its standard input to its standard output and appends a one line
 G-record.  The G-record is one line hexadecimal encoding of the HMAC-SHA256 of
 the data read.
 
-### `vali`
+### `vali-xtp`
 
-`vali` reads a single file, calculates its HMAC-SHA256 and compares this to the
-G-record found at the end.  If the file validates successfully then it prints
-`Validation check passed, data indicated as correct` and returns 0 (success),
-otherwise it prints `Validation check failed` and returns 1 (failure).
+`vali-xtp` reads a single file, calculates its HMAC-SHA256 and compares this to
+the G-record found at the end.  If the file validates successfully then it
+prints `Validation check passed, data indicated as correct` and returns 0
+(success), otherwise it prints `Validation check failed` and returns 1
+(failure).
 
 
 Example
@@ -52,15 +53,15 @@ Example
  2. Create a file to sign.  Note that lines beginning with "G" will be
     interpreted as invalid G-records, causing validation to fail.
         $ $EDITOR example.txt
- 3. Sign it with `sign`:
-        $ ./sign < example.txt > example.txt.g
- 4. Verify the signature with `vali`:
-        $ ./vali example.txt.g
+ 3. Sign it with `sign-xtp`:
+        $ ./sign-xtp < example.txt > example.txt.g
+ 4. Verify the signature with `vali-xtp`:
+        $ ./vali-xtp example.txt.g
         Validation check passed, data indicated as correct
  5. Modify the signed file:
         $ $EDITOR example.txt.g
  6. Check that the signature is no longer valid:
-        $ ./vali example.txt.g
+        $ ./vali-xtp example.txt.g
         Validation check failed
 
 
