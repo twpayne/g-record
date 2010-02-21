@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <openssl/hmac.h>
+
+#define VERSION "0.1"
 
 #include "key.c"
 
@@ -22,6 +25,16 @@ int main(int argc, char *argv[])
 			HMAC_Update(&ctx, (unsigned char *) line, strlen(line));
 		}
 	}
+
+	time_t t;
+	time(&t);
+	struct tm tm;
+	gmtime_r(&t, &tm);
+	char timestamp[32];
+	strftime(timestamp, sizeof timestamp, "%Y-%m-%d-%H%M%S", &tm);
+	snprintf(line, sizeof line, "LXTPSGN g-record %s %s\n", VERSION, timestamp);
+	fputs(line, stdout);
+	HMAC_Update(&ctx, (unsigned char *) line, strlen(line));
 
 	unsigned char md[EVP_MAX_MD_SIZE];
 	unsigned md_len;
