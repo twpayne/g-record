@@ -25,18 +25,18 @@ Run `make`.
 Usage
 -----
 
-### `genkey`
+### genkey
 
 `genkey filename` generates a random signing key in `filename`.  It is
 automatically compiled and invoked during the build process.
 
-### `sign-xtp`
+### sign-xtp
 
 `sign-xtp` copies its standard input to its standard output and appends a one line
 G-record.  The G-record is one line hexadecimal encoding of the HMAC-SHA256 of
 the data read.
 
-### `vali-xtp`
+### vali-xtp
 
 `vali-xtp` reads a single file, calculates its HMAC-SHA256 and compares this to
 the G-record found at the end.  If the file validates successfully then it
@@ -49,19 +49,30 @@ Example
 -------
 
  1. Build the software:
+
         $ make
+
  2. Create a file to sign.  Note that lines beginning with "G" will be
     interpreted as invalid G-records, causing validation to fail.
-        $ $EDITOR example.txt
+
+        $ $EDITOR example.igc
+
  3. Sign it with `sign-xtp`:
-        $ ./sign-xtp < example.txt > example.txt.g
+
+        $ ./sign-xtp < example.igc > example.igc.g
+
  4. Verify the signature with `vali-xtp`:
-        $ ./vali-xtp example.txt.g
+
+        $ ./vali-xtp example.igc.g
         Validation check passed, data indicated as correct
+
  5. Modify the signed file:
-        $ $EDITOR example.txt.g
+
+        $ $EDITOR example.igc.g
+
  6. Check that the signature is no longer valid:
-        $ ./vali-xtp example.txt.g
+
+        $ ./vali-xtp example.igc.g
         Validation check failed
 
 
@@ -77,11 +88,10 @@ attacker. The attack vectors are, in approximate order of effort:
    fake GPS.
  * Reverse engineering the program binary or firmware to extract the signing
    algorithm and key.
- * Generating false GPS signals :-)
+ * Generating fake GPS signals :-)
 
 
 References
 ==========
 
- * [Cryptographic Right Answers]
-   (http://www.daemonology.net/blog/2009-06-11-cryptographic-right-answers.html)
+ * [Cryptographic Right Answers](http://www.daemonology.net/blog/2009-06-11-cryptographic-right-answers.html)
